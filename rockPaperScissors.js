@@ -33,9 +33,10 @@ function starting() {
 
 function rockFunc() {
     cpuChoice = getRandomInt(1, 3);
-    console.log(cpuChoice);
     ++roundCount;
-    if (cpuChoice == 3){
+    if (roundCount > 5) {
+        declareWinner();
+    }else if (cpuChoice == 3){
         ++playerCounter;
         roundWin.innerHTML = "Your Rock beats their Scissors, YOU WIN ROUND: " + roundCount;
         roundWin.style.visibility = "visible";
@@ -54,7 +55,9 @@ function rockFunc() {
 function paperFunc() {
     ++roundCount;
     cpuChoice = getRandomInt(1, 3);
-    if (cpuChoice == 1){
+    if (roundCount > 5) {
+        declareWinner();
+    }else if (cpuChoice == 1){
         ++playerCounter;
         roundWin.innerHTML = "Your Paper beats their Rock, YOU WIN ROUND: " + roundCount;
         roundWin.style.visibility = "visible";
@@ -73,7 +76,10 @@ function paperFunc() {
 function scissorsFunc() {
     ++roundCount;
     cpuChoice = getRandomInt(1, 3);
-    if ( cpuChoice == 2){
+    
+    if (roundCount > 5) {
+        declareWinner();
+    }else if ( cpuChoice == 2){
         ++playerCounter;
         roundWin.innerHTML = "Your Scissors beats their Paper, YOU WIN ROUND: " + roundCount;
         roundWin.style.visibility = "visible";
@@ -87,6 +93,20 @@ function scissorsFunc() {
         roundWin.innerHTML = "Your Scissors was beaten by their Rock, YOU LOSE ROUND: " + roundCount;
         roundWin.style.visibility = "visible";
         return;
+    }
+}
+
+function declareWinner() {
+    rock.style.visibility = "hidden";
+    paper.style.visibility = "hidden";
+    scissors.style.visibility = "hidden";
+    startGame.style.visibility = "visible";
+    if (playerCounter >= 3) {
+        roundWin.innerHTML = "YOU WIN";
+    }else if (tieCount >= 3) {
+        roundWin.innerHTML = "YOU TIE";
+    }else {
+        roundWin.innerHTML = "YOU LOSE";
     }
 }
 
