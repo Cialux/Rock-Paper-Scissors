@@ -4,9 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>RPS-UI</title>
+    
 </head>
 <body>
-    <script src="./rockPaperScissors.js"></script>
+    
+    <div class="start">
+        <button id="startGame">START GAME</button>
+    </div>
+    <div class="gameStarted">
+        <div class="rock">
+            <button id="rockGame">Rock</button>
+        </div>
+        <div class="paper">
+            <button id="paperGame">Paper</button>
+        </div>
+        <div class="scissors">
+            <button id="scissorsGame">Scissors</button>
+        </div>
+    </div>
+    <div class="roundWin">
+        <h3 id="roundWin">YOU TIED THIS ROUND</h3>
+    </div>
+    
 </body>
+<script src="./rockPaperScissors.js"></script>
 </html>

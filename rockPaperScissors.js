@@ -1,9 +1,23 @@
 // 1 = ROCK 2 = PAPER 3 = SCISSORS
-let userChoice;
-let userChoiceConverted;
-userChoice = prompt("Rock, Paper or Scissors? ");
-userChoice = userChoice.toLowerCase();
-let cpuChoice = getRandomInt(1, 3)
+const startGame = document.getElementById("startGame");
+const rock = document.getElementById("rockGame");
+const paper = document.getElementById("paperGame");
+const scissors = document.getElementById("scissorsGame");
+const roundWin = document.getElementById("roundWin");
+
+let rockClick = 0;
+let paperClick = 0;
+let scissorsClick = 0;
+
+startGame.addEventListener("click", starting);
+
+function starting() {
+    roundWin.style.visibility = "visible";
+}
+
+
+
+let cpuChoice = getRandomInt(1, 3);
 
 if (userChoice == "rock") {
     userChoiceConverted = 1;
