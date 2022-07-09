@@ -8,36 +8,88 @@ const roundWin = document.getElementById("roundWin");
 let rockClick = 0;
 let paperClick = 0;
 let scissorsClick = 0;
+let cpuChoice = 0;
+let playerCounter = 0;
+let roundCount = 0;
+let tieCount = 0
+
 
 startGame.addEventListener("click", starting);
 
+
+rock.addEventListener("click", rockFunc)
+paper.addEventListener("click", paperFunc)
+scissors.addEventListener("click", rockFunc)
+
+
 function starting() {
-    roundWin.style.visibility = "visible";
+    rock.style.visibility = "visible";
+    paper.style.visibility = "visible";
+    scissors.style.visibility = "visible";
+    startGame.style.visibility = "hidden";
+    roundCount = 0;
+    tieCount = 0;
 }
 
-
-
-let cpuChoice = getRandomInt(1, 3);
-
-if (userChoice == "rock") {
-    userChoiceConverted = 1;
-}else if (userChoice == "paper"){
-    userChoiceConverted = 2;
-}else if (userChoice == "scissors"){
-    userChoiceConverted = 3;
-}else {alert("WRONG INPUT")}
-console.log("%i", cpuChoice);
-if (userChoiceConverted == cpuChoice){
-    console.log("Tied");
-}else if (userChoiceConverted == 1 && cpuChoice == 3){
-    console.log("You Win!");
-}else if (userChoiceConverted == 2 && cpuChoice == 1){
-    console.log("You Win!");
-}else if (userChoiceConverted == 3 && cpuChoice == 2){
-    console.log("You Win!");
-}else{
-    console.log("You Lose!");
+function rockFunc() {
+    cpuChoice = getRandomInt(1, 3);
+    console.log(cpuChoice);
+    ++roundCount;
+    if (cpuChoice == 3){
+        ++playerCounter;
+        roundWin.innerHTML = "Your Rock beats their Scissors, YOU WIN ROUND: " + roundCount;
+        roundWin.style.visibility = "visible";
+        return;
+    }else if (cpuChoice == 1){
+        ++tieCount;
+        roundWin.innerHTML = "You both chose Rock, YOU TIE ROUND: " + roundCount;
+        roundWin.style.visibility = "visible";
+        return;
+    }else {
+        roundWin.innerHTML = "Your rock was beaten by their paper, YOU LOSE ROUND: " + roundCount;
+        roundWin.style.visibility = "visible";
+        return;
+    }
 }
+function paperFunc() {
+    ++roundCount;
+    cpuChoice = getRandomInt(1, 3);
+    if (cpuChoice == 1){
+        ++playerCounter;
+        roundWin.innerHTML = "Your Paper beats their Rock, YOU WIN ROUND: " + roundCount;
+        roundWin.style.visibility = "visible";
+        return;
+    }else if (cpuChoice == 2){
+        ++tieCount;
+        roundWin.innerHTML = "You both chose Paper, YOU TIE ROUND: " + roundCount;
+        roundWin.style.visibility = "visible";
+        return;
+    }else {
+        roundWin.innerHTML = "Your Paper was beaten by their Scissors, YOU LOSE ROUND: " + roundCount;
+        roundWin.style.visibility = "visible";
+        return;
+    }
+}
+function scissorsFunc() {
+    ++roundCount;
+    cpuChoice = getRandomInt(1, 3);
+    if ( cpuChoice == 2){
+        ++playerCounter;
+        roundWin.innerHTML = "Your Scissors beats their Paper, YOU WIN ROUND: " + roundCount;
+        roundWin.style.visibility = "visible";
+        return;
+    }else if (cpuChoice == 3){
+        ++tieCount;
+        roundWin.innerHTML = "You both chose Scissors, YOU TIE ROUND: " + roundCount;
+        roundWin.style.visibility = "visible";
+        return;
+    }else {
+        roundWin.innerHTML = "Your Scissors was beaten by their Rock, YOU LOSE ROUND: " + roundCount;
+        roundWin.style.visibility = "visible";
+        return;
+    }
+}
+
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
